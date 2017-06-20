@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class ContactsAppComponent {
-  title = 'Angular 2 Master Class setup works!';
+  title = 'Angular 2 Master Class setup works! I can change the title as well';
 }
