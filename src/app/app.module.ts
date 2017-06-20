@@ -5,15 +5,19 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ContactsAppComponent } from './app.component';
-import { ContactsService } from './contacts.service'
+import { ContactsService } from './contacts.service';
+import { ContactsListComponent } from './contacts-list/contacts-list.component'
+import {RouterModule} from "@angular/router";
+import {APP_ROUTES} from './app.routes'
 
 @NgModule({
-  declarations: [ContactsAppComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule.forRoot(APP_ROUTES)
   ],
   providers: [
     ContactsService
