@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {CONTACT_DATA} from './data/contact-data'
+import { Contact } from './models/contact'
 
 @Component({
   selector: 'trm-contacts-app',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class ContactsAppComponent {
-  title = 'Angular 2 Master Class setup works! I can change the title as well';
+
+  contacts: Contact[] = CONTACT_DATA
+
+  trackByContacts(index: number, contact: Contact): number | string {
+    return contact.id
+  }
+
 }
