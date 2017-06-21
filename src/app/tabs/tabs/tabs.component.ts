@@ -17,11 +17,11 @@ export class TabsComponent implements OnInit {
 
   addTab(tab: TabComponent) {
 
-    this.tabs.push(tab)
-
-    if (this.tabs.length === 1) {
-      tab.selected = true
+    if (this.tabs.length === 0) {
+      this.select(tab)
     }
+
+    this.tabs.push(tab)
 
   }
 
