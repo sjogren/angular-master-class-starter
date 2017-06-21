@@ -11,7 +11,7 @@ import {Observable, Subject} from "rxjs";
 export class ContactsListComponent implements OnInit {
 
   private contacts: Observable<Array<Contact>>
-  private terms$ = new Subject<string>()
+  private term$ = new Subject<string>()
 
   constructor(private contactsService: ContactsService) {}
 
@@ -21,17 +21,21 @@ export class ContactsListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.contacts = this.contactsService.getContacts()
+    let initialContactsObservable = this.contactsService.getContacts()
 
-    this.terms$.debounceTime(400)
+    let searchedContactsObservable = this.term$.debounceTime(400)
       .distinctUntilChanged()
-      .subscribe(term => this.search(term))
+      .switchMap(term => this.search(term))
 
+    this.contacts = Observable.merge(
+      initialContactsObservable.delay(3000).takeUntil(searchedContactsObservable),
+      searchedContactsObservable
+    )
 
   }
 
-  search(term: string) {
-    this.contacts = this.contactsService.search(term)
+  search(term: string)  {
+    return this.contactsService.search(term)
   }
 
 }

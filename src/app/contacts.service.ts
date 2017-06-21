@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Contact} from './models/contact'
 import {Http} from '@angular/http'
+import {Observable} from "rxjs";
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -10,7 +11,7 @@ export class ContactsService {
 
   constructor(private http: Http) {}
 
-  getContacts() {
+  getContacts(): Observable<Array<Contact>> {
 
     return this.http.get(this.API_ENDPOINT + '/contacts')
       .map(res => res.json())
@@ -18,7 +19,7 @@ export class ContactsService {
 
   }
 
-  getContact(id: string) {
+  getContact(id: string): Observable<Contact> {
 
     return this.http.get(this.API_ENDPOINT + '/contacts/' + id)
       .map(res => res.json())
@@ -30,7 +31,7 @@ export class ContactsService {
     return this.http.put(this.API_ENDPOINT + '/contacts/' + contact.id, contact)
   }
 
-  search(term: string) {
+  search(term: string): Observable<Array<Contact>> {
     return this.http.get(this.API_ENDPOINT + '/search?text=' + term)
       .map(res => res.json())
       .map(data => data.items)
