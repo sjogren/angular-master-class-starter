@@ -1,3 +1,10 @@
+<md-toolbar>
+  <md-input-container dividerColor="accent" class="trm-search-container">
+    <input mdInput type="text" (input)="search($event.target.value)">
+  </md-input-container>
+  <md-icon color="accent">search</md-icon>
+</md-toolbar>
+
 <md-list>
   <a [routerLink]="['/contacts', contact.id]" md-list-item *ngFor="let contact of contacts | async; trackBy: trackByContacts">
 
