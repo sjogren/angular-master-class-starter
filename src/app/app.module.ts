@@ -13,10 +13,12 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component'
 import {APP_ROUTES} from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
-import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component'
+import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { TabComponent } from './tabs/tab/tab.component';
+import { TabsComponent } from './tabs/tabs/tabs.component'
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabComponent, TabsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
