@@ -28,7 +28,7 @@ export class ContactsListComponent implements OnInit {
       .switchMap(term => this.search(term))
 
     this.contacts = Observable.merge(
-      initialContactsObservable.delay(3000).takeUntil(searchedContactsObservable),
+      initialContactsObservable.delay(150).takeUntil(searchedContactsObservable),
       searchedContactsObservable
     )
 
