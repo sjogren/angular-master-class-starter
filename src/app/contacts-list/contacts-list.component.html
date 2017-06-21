@@ -1,5 +1,5 @@
 <md-list>
-  <a [routerLink]="['/contacts', contact.id]" md-list-item *ngFor="let contact of contacts; trackBy: trackByContacts">
+  <a [routerLink]="['/contacts', contact.id]" md-list-item *ngFor="let contact of contacts | async; trackBy: trackByContacts">
 
     <img md-list-avatar [src]="contact.image" alt="Picture of {{contact.name}}">
     <h3 md-line>{{contact.name}}</h3>
