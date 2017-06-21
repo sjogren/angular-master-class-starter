@@ -1,0 +1,44 @@
+<div class="trm-contacts-editor">
+  <md-card>
+    <md-card-title-group class="fullBleed editing">
+      <img md-card-md-image [src]="contact?.image">
+      <md-card-title>{{contact?.name}}</md-card-title>
+      <md-card-subtitle>{{contact?.email}}</md-card-subtitle>
+    </md-card-title-group>
+    <md-card-content>
+      <div fxLayout="column">
+        <md-input-container fxFlex>
+          <input mdInput [(ngModel)]="contact.name" placeholder="Name" name="name">
+        </md-input-container>
+        <md-input-container fxFlex>
+          <input mdInput [(ngModel)]="contact.email" placeholder="Email" name="email">
+        </md-input-container>
+        <md-input-container fxFlex>
+          <input mdInput [(ngModel)]="contact.phone" placeholder="Phone" name="phone">
+        </md-input-container>
+        <md-input-container fxFlex>
+          <input mdInput [(ngModel)]="contact.website" placeholder="Website" name="website">
+        </md-input-container>
+        <md-input-container fxFlex>
+          <input mdInput [(ngModel)]="contact.birthday" placeholder="Birthday" name="birthday" type="date">
+        </md-input-container>
+        <fieldset fxLayout="column">
+          <legend>Address</legend>
+          <md-input-container fxFlex>
+            <input mdInput [(ngModel)]="contact.address.street" placeholder="Street" name="street">
+          </md-input-container>
+          <md-input-container fxFlex>
+            <input mdInput [(ngModel)]="contact.address.zip" placeholder="Zip" name="zip">
+          </md-input-container>
+          <md-input-container fxFlex>
+            <input mdInput [(ngModel)]="contact.city" placeholder="City" name="city">
+          </md-input-container>
+        </fieldset>
+      </div>
+    </md-card-content>
+    <md-card-actions fxLayout fxLayoutAlign="center center">
+      <button md-button (click)="save(contact)" title="Save contact">Save</button>
+      <button md-button (click)="cancel(contact)" title="Cancel editing">Cancel</button>
+    </md-card-actions>
+  </md-card>
+</div>

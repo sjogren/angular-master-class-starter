@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CONTACT_DATA} from './data/contact-data'
+import {Contact} from './models/contact'
 import {Http} from '@angular/http'
 import 'rxjs/add/operator/map'
 
@@ -19,7 +19,18 @@ export class ContactsService {
   }
 
   getContact(id: string) {
-    return CONTACT_DATA.find((contact) => contact.id.toString() === id)
+
+    return this.http.get(this.API_ENDPOINT + '/contacts/' + id)
+      .map(res => res.json())
+      .map(data => data.item)
+
+  }
+
+  updateContact(contact: Contact) {
+
+    return this.http.put(this.API_ENDPOINT + '/contacts/' + contact.id, contact)
+
+
   }
 
 }

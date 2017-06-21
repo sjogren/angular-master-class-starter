@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ContactsService} from "../contacts.service";
 import {ActivatedRoute} from '@angular/router'
+import {Contact} from '../models/contact'
 
 @Component({
   selector: 'trm-contacts-detail',
@@ -9,7 +10,7 @@ import {ActivatedRoute} from '@angular/router'
 })
 export class ContactsDetailComponent implements OnInit {
 
-  private contact
+  private contact: Contact = <Contact>{ address: {}};
 
   constructor(
     private contactsService: ContactsService,
@@ -17,8 +18,12 @@ export class ContactsDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     let id = this.route.snapshot.params['id']
-    this.contact = this.contactsService.getContact(id)
+
+    this.contactsService.getContact(id)
+      .subscribe(contact => this.contact = contact)
+
   }
 
 }
