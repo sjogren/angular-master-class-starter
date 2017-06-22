@@ -38,8 +38,25 @@ export class AppStore {
    * @TODO - add your custom actions here!
    */
   protected reducer(state, action){
-    switch(action) {
+
+    switch(action.type) {
+
+      case VoteActions.YES:
+
+        return {
+          ...state,
+          counter: state.counter + 1
+        }
+
+      case VoteActions.NO:
+
+        return {
+          ...state,
+          counter: state.counter - 1
+        }
+
       default : return state;
+
     }
   }
 
@@ -50,4 +67,7 @@ export class AppStore {
 
 }
 
-
+export const VoteActions = {
+  NO: 'NO',
+  YES: 'YES'
+}
