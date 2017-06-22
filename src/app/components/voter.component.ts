@@ -1,6 +1,7 @@
+import {Store} from 'redux'
 import {Component, Inject} from '@angular/core';
 import {VoteActions} from '../store/votes/vote-actions';
-import {APP_STORE, Store} from '../store/store'
+import {APP_STORE} from '../store/store'
 import {ApplicationState} from "../store/root-reducer";
 
 @Component({

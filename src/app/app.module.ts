@@ -12,7 +12,7 @@ import { DashboardComponent } from "./components/dashboard.component";
 import { VoterComponent } from "./components/voter.component";
 import { StatusComponent } from "./components/status.component";
 
-import {APP_STORE, appStoreFactory} from './store/store'
+import {APP_STORE_PROVIDER} from './store/store'
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ import {APP_STORE, appStoreFactory} from './store/store'
     StatusComponent
   ],
   providers: [
-    {provide: APP_STORE, useFactory: appStoreFactory}
+    APP_STORE_PROVIDER
   ],
   bootstrap: [AppComponent]
 })
