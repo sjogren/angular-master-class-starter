@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {RouterModule} from "@angular/router";
 import {HttpModule} from '@angular/http'
 import {FormsModule} from '@angular/forms'
+import {StoreModule} from "@ngrx/store";
 
 import { ContactsAppComponent } from './app.component';
 import { ContactsService } from './contacts.service';
@@ -17,6 +18,7 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
 import { TabComponent } from './tabs/tab/tab.component';
 import { TabsComponent } from './tabs/tabs/tabs.component'
 import {EventBusService} from "./event-bus.service";
+import {ROOT_REDUCER} from './state-management/index'
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabComponent, TabsComponent],
@@ -27,11 +29,12 @@ import {EventBusService} from "./event-bus.service";
     FlexLayoutModule,
     RouterModule.forRoot(APP_ROUTES),
     HttpModule,
-    FormsModule
+    FormsModule,
+    StoreModule.provideStore(ROOT_REDUCER)
   ],
   providers: [
     ContactsService,
-    EventBusService
+    EventBusService,
   ],
   bootstrap: [ContactsAppComponent]
 })
