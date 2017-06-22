@@ -18,10 +18,21 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
     case ContactsActionTypes.LOAD_CONTACTS_SUCCESS:
       return {...state, list: action.payload}
 
+    case ContactsActionTypes.SELECT_CONTACT:
+      return {...state, selectedContactId: action.payload}
+
+    case ContactsActionTypes.UPDATE_CONTACT:
+
+      let updatedList = state.list.map(contact => contact.id == action.payload.id ? {...contact, ...action.payload} : contact)
+
+      return {
+        ...state,
+        list: updatedList
+      }
+
     default:
       return state
 
   }
-
 
 }

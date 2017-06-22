@@ -5,6 +5,9 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {Observable} from "rxjs";
 import {EventBusService} from "../event-bus.service";
 import {subscribeOn} from "rxjs/operator/subscribeOn";
+import {Store} from "@ngrx/store";
+import {ApplicationState} from "../state-management/index";
+import {SelectContactAction} from "../state-management/contacts/contacts-actions";
 
 @Component({
   selector: 'trm-contacts-detail-view',
@@ -19,16 +22,27 @@ export class ContactsDetailViewComponent implements OnInit {
     private contactsService: ContactsService,
     private route: ActivatedRoute,
     private router: Router,
-    private eventBus: EventBusService
+    private eventBus: EventBusService,
+    private store: Store<ApplicationState>
   ) {}
 
   ngOnInit() {
 
     let id = this.route.snapshot.params['id']
-    this.contact = this.contactsService.getContact(id)
-      //.subscribe(() => this.eventBus.emit('appTitleChange', 'Contacts Detail'))
+
+    this.store.dispatch(new SelectContactAction(+id))
+
+    this.contact = this.store.select(state => {
+
+      let selectedContactId = state.contacts.selectedContactId
+      return state.contacts.list.find(contact => contact.id === selectedContactId)
+
+    })
 
     this.eventBus.emit('appTitleChange', 'Contacts Detail')
+
+    //this.contact = this.contactsService.getContact(id)
+    //.subscribe(() => this.eventBus.emit('appTitleChange', 'Contacts Detail'))
 
   }
 
